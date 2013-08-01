@@ -1,6 +1,6 @@
 Name:       pure-ftpd
 Version:    1.0.30
-Release:    1%{?dist}
+Release:    999%{?dist}
 Summary:    Lightweight, fast and secure FTP server
 
 Group:      System Environment/Daemons
@@ -17,6 +17,7 @@ Source7:    pure-ftpd.pureftpd.te
 Patch0:     pure-ftpd-1.0.27-config.patch
 #Patch1:     pure-ftpd-1.0.20-libdir.patch
 Patch2:     pure-ftpd-paminclude.patch
+Patch3:     pure-ftpd-ldapforceids.patch
 Provides:   ftpserver
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  pam-devel, perl, python, libcap-devel
@@ -74,6 +75,7 @@ Pure-FTPd to be protected in the same way other FTP servers are in Fedora
 %patch0 -p0 -b .config
 #%%patch1 -p0 -b .libdir
 %patch2 -p0 -b .paminclude
+%patch3 -p1 -b .ldapforceid
 install -pm 644 %{SOURCE6} README.SELinux
 mkdir selinux
 cp -p %{SOURCE7} selinux/pureftpd.te
